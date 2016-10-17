@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ContactMVC.Models.Contact>
+@using ContactMVC.Controllers;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contacts<br></h2>
+
+<p>
+    <span class="glyphicon glyphicon-plus-sign">@Html.ActionLink("Add Contact", "Create")</span>
+</p>
+
+@foreach (var item in Model)
+{
+    <table class="table">
+        <tr>
+            <th><h2>@Html.DisplayFor(modelItem => item.LastName), @Html.DisplayFor(modelItem => item.FirstName)</h2></th>
+        </tr>
+        <tr>
+            <td><img src="@Html.DisplayFor(modelItem => item.picURL)" float="left"></td>
+            <td>
+                <p><strong>@Html.DisplayNameFor(model => model.Phone):</strong> @Html.DisplayFor(modelItem => item.Phone)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.Address):</strong> @Html.DisplayFor(modelItem => item.Address)</p>
+                <div>
+                    <strong>@Html.DisplayNameFor(model => model.Email):</strong>
+                    <a href="mailto:@Html.DisplayFor(modelItem => item.Email)"> @Html.DisplayFor(modelItem => item.Email)</a>
+                </div>
+            </td>
+
+            <td>
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ContactId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ContactId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ContactId })
+                </div>
+            </td>
+        </tr>
+</table>
+}
